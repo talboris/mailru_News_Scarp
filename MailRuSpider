@@ -1,0 +1,32 @@
+#tiny scrapy spider that retrives news from mail.ru  using scrapy , finding news lines by xpath and exporting to json file
+
+# how to run:   after spider is created with scrapy startproject  - "scrapy crawl testmailspidet -o data.json"
+import scrapy
+
+
+class TestmailspidetSpider(scrapy.Spider):
+    name = 'testmailspidet'
+    allowed_domains = ['mail.ru']
+    start_urls = ['http://mail.ru/']
+
+    def parse(self, response):
+        x = response.xpath('//*[@id="news:main:list"]//*[@class="news__list__item__link__text"]/text()').extract()
+        for news in x:
+            print "------------------------------------------------------------------"
+            print news
+            print "------------------------------------------------------------------"
+            print "------------------------------------------------------------------"
+    
+       
+        yield {
+            
+            
+            'Daily russian news':x
+            
+                
+                
+               
+            
+        }
+        
+        
